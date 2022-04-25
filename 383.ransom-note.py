@@ -5,16 +5,20 @@
 #
 
 # @lc code=start
-from typing import Counter
-
-
 class Solution:
     def canConstruct(self, ransomNote: str, magazine: str) -> bool:
-        m_count = Counter(magazine)
-        r_count = Counter(ransomNote)
-        for c in r_count:
-            if c not in m_count or m_count[c] < r_count[c]:
+        arr1 = sorted(ransomNote)
+        arr2 = sorted(magazine)
+        while arr2:
+            if not arr1:
+                return True
+            if arr1[0] == arr2[0]:
+                arr1.pop(0)
+                arr2.pop(0)
+            elif arr1[0] < arr2[0]:
                 return False
-        return True
+            else:
+                arr2.pop(0)
+        return not arr1
 # @lc code=end
 
