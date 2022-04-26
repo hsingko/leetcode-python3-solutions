@@ -14,29 +14,14 @@
 
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        parent = {root: None}
-        stack = [root]
-        while stack:
-            curr = stack.pop()
-            if curr.left:
-                parent[curr.left] = curr
-                stack.append(curr.left)
-            if curr.right:
-                parent[curr.right] = curr
-                stack.append(curr.right)
-        path_p = []
-        while p:
-            path_p.append(p)
-            p = parent[p]
-        path_q = set()
-        while q:
-            path_q.add(q)
-            q = parent[q]
-
-        for k in path_p:
-            if k in path_q:
-                return k
-        return None
+        if not root or root in {p, q}:
+            return root
+        left = self.lowestCommonAncestor(root.left, p, q)
+        right = self.lowestCommonAncestor(root.right, p, q)
+        if left and right:
+            return root
+        return left if left else right
+        
 
 # @lc code=end
 
