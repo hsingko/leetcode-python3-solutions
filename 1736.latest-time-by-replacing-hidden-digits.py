@@ -7,6 +7,14 @@
 # @lc code=start
 class Solution:
     def maximumTime(self, time: str) -> str:
-        
+        s = list(time)
+        for idx, val in enumerate(time):
+            if val == '?':
+                if idx == 0:
+                    s[idx] = '2'
+                elif idx == 1:
+                    if s[idx-1] == '2':
+                        s[idx] = '4'
+                    
 # @lc code=end
 
