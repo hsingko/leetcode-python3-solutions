@@ -6,7 +6,18 @@
 
 # @lc code=start
 class Solution:
-    def distributeCandies(self, candies: int, num_people: int) -> List[int]:
+    def distributeCandies(self, candies: int, n: int) -> List[int]:
+        result = [0]*n
+        curr = 0
+        give = 1
+        while candies>0:
+            result[curr] += min(give, candies)
+            candies -= give
+            give += 1
+            curr += 1
+            if curr == n:
+                curr = 0
+        return result
         
 # @lc code=end
 
