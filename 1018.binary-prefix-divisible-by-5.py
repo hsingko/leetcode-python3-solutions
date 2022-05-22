@@ -7,6 +7,15 @@
 # @lc code=start
 class Solution:
     def prefixesDivBy5(self, nums: List[int]) -> List[bool]:
-        
+        curr = 0
+        ans = []
+        for num in nums:
+            curr <<= 1
+            curr += num
+            if curr % 5 == 0:
+                ans.append(True)
+            else:
+                ans.append(False)
+        return ans
 # @lc code=end
 
